@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GrowDesign AI Toolkit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    h1 { color: #facc15; }
+    button {
+      padding: 14px 24px;
+      background: #facc15;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #caption {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>GrowDesign AI Toolkit</h1>
+  <p>Free creative tools for designers and creators.</p>
+
+  <h2>Caption Idea Generator</h2>
+  <button onclick="generateCaption()">Generate Caption</button>
+  <p id="caption">Your caption will appear here.</p>
+
+  <script>
+    const captions = [
+      "Create something amazing today! ✨",
+      "Design is where creativity meets purpose. 🎨",
+      "Small ideas can create a big impact. 🚀",
+      "Your next creative breakthrough starts now. 💡",
+      "Turn imagination into inspiration. 🌟"
+    ];
+
+    function generateCaption() {
+      const randomIndex = Math.floor(Math.random() * captions.length);
+      document.getElementById("caption").textContent =
+        captions[randomIndex];
+    }
+  </script>
+</body>
+</html>
