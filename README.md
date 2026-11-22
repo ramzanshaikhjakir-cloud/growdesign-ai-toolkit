@@ -14,6 +14,7 @@ https://ramzanshaikhjakir-cloud.github.io/growdesign-ai-toolkit/
 - Copy captions with one click
 - Mobile-friendly interface
 - No account or API key required
+- Three writing styles: Professional, Funny, Motivational
 
 ## How to Use
 
@@ -50,10 +51,11 @@ changes, and open a pull request explaining what changed.
 - [x] Caption categories
 - [x] Copy Caption button
 - [x] Responsive design
-- [ ] Caption writing styles
+- [x] Caption writing styles
 - [ ] Hashtag suggestions
 - [ ] More caption categories
 - [ ] Optional AI integration
+
 
 ## License
 

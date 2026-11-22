@@ -13,29 +13,27 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #111827;
-      color: white;
-      text-align: center;
       margin: 0;
       padding: 50px 20px;
       min-height: 100vh;
+      background: #111827;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
 
     .container {
       max-width: 650px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     h1 {
       color: #facc15;
       font-size: 36px;
-      margin-bottom: 15px;
     }
 
     h2 {
-      margin-top: 45px;
-      font-size: 26px;
+      margin-top: 40px;
     }
 
     .description {
@@ -45,20 +43,19 @@
 
     label {
       display: block;
-      margin: 30px 0 10px;
-      font-size: 17px;
+      margin: 22px 0 10px;
+      font-weight: bold;
     }
 
     select {
-      padding: 14px;
       width: 100%;
-      max-width: 300px;
-      background: white;
-      color: #111827;
+      max-width: 320px;
+      padding: 14px;
       border: none;
       border-radius: 8px;
+      background: white;
+      color: #111827;
       font-size: 16px;
-      cursor: pointer;
     }
 
     button {
@@ -68,8 +65,7 @@
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      margin: 12px 5px;
-      transition: background 0.2s;
+      margin-top: 20px;
     }
 
     .generate-btn {
@@ -92,11 +88,11 @@
     }
 
     .caption-box {
-      background: #1f2937;
+      margin-top: 30px;
       padding: 25px;
-      margin-top: 25px;
-      border-radius: 12px;
+      background: #1f2937;
       border: 1px solid #374151;
+      border-radius: 12px;
     }
 
     #caption {
@@ -106,13 +102,13 @@
     }
 
     #message {
+      min-height: 22px;
       color: #86efac;
-      min-height: 24px;
       font-size: 14px;
     }
 
     footer {
-      margin-top: 60px;
+      margin-top: 50px;
       color: #9ca3af;
       font-size: 14px;
     }
@@ -122,13 +118,8 @@
         font-size: 28px;
       }
 
-      h2 {
-        font-size: 22px;
-      }
-
       button {
         width: 100%;
-        margin: 8px 0;
       }
     }
   </style>
@@ -138,7 +129,7 @@
 
   <main class="container">
 
-    <h1>GrowDesign AI Toolkit</h1>
+    <h1>GrowDesign AI Toolkit 🎨</h1>
 
     <p class="description">
       Free creative tools for designers and creators.
@@ -147,8 +138,8 @@
     <h2>Caption Idea Generator</h2>
 
     <p class="description">
-      Select a category and discover creative caption ideas
-      for your social media posts.
+      Choose a category and writing style to discover
+      caption ideas for your social media posts.
     </p>
 
     <label for="category">Choose a category</label>
@@ -161,10 +152,16 @@
       <option value="lifestyle">🌿 Lifestyle</option>
     </select>
 
+    <label for="style">Choose a writing style</label>
+
+    <select id="style">
+      <option value="professional">Professional</option>
+      <option value="funny">Funny</option>
+      <option value="motivational">Motivational</option>
+    </select>
+
     <div>
-      <button
-        class="generate-btn"
-        onclick="generateCaption()">
+      <button class="generate-btn" onclick="generateCaption()">
         Generate Caption
       </button>
     </div>
@@ -175,9 +172,7 @@
         Your caption will appear here.
       </p>
 
-      <button
-        class="copy-btn"
-        onclick="copyCaption()">
+      <button class="copy-btn" onclick="copyCaption()">
         📋 Copy Caption
       </button>
 
@@ -193,59 +188,100 @@
   </main>
 
   <script>
-
     const captions = {
+      design: {
+        professional: [
+          "Thoughtful design creates meaningful experiences.",
+          "Good design balances creativity and purpose."
+        ],
+        funny: [
+          "My pixels are having a creative crisis. 🎨",
+          "Just one more revision... said every designer ever. 😅"
+        ],
+        motivational: [
+          "Your next masterpiece starts with one idea. ✨",
+          "Create boldly. Your imagination has no limits. 🚀"
+        ]
+      },
 
-      design: [
-        "Design is where creativity meets purpose. 🎨",
-        "Turning ideas into visual stories. ✨",
-        "Create boldly. Design thoughtfully. 💡",
-        "Good design makes an impact. 🚀",
-        "Creativity has no limits. 🌟"
-      ],
+      business: {
+        professional: [
+          "Consistent progress builds lasting results.",
+          "Great businesses grow through trust and innovation."
+        ],
+        funny: [
+          "Running on coffee, deadlines, and big ideas. ☕",
+          "CEO of having too many tabs open. 💻"
+        ],
+        motivational: [
+          "Build boldly. Grow every day. 🚀",
+          "Every success story starts with a first step."
+        ]
+      },
 
-      business: [
-        "Building dreams, one step at a time. 🚀",
-        "Great businesses start with bold ideas. 💼",
-        "Success begins with consistent action. 📈",
-        "Dream big. Start small. Keep growing. 💡",
-        "Every big achievement starts with a decision."
-      ],
+      fashion: {
+        professional: [
+          "Personal style is a form of visual expression.",
+          "Fashion reflects creativity and individuality."
+        ],
+        funny: [
+          "My wardrobe has more ideas than my calendar. 👗",
+          "Too stylish to have nothing to wear. 😎"
+        ],
+        motivational: [
+          "Wear your confidence with pride. ✨",
+          "Express yourself without limits."
+        ]
+      },
 
-      fashion: [
-        "Style is a way to tell your story. ✨",
-        "Confidence is always in fashion. 👗",
-        "Your style, your rules. 💫",
-        "Dress like you mean it. 🔥",
-        "Fashion fades, but personal style remains."
-      ],
+      travel: {
+        professional: [
+          "Discovering new destinations and perspectives.",
+          "Travel creates opportunities to understand the world."
+        ],
+        funny: [
+          "My suitcase has commitment issues. ✈️",
+          "Out of office. Into adventure. 🌴"
+        ],
+        motivational: [
+          "Every journey begins with a brave first step. 🌍",
+          "Go somewhere new. Discover something extraordinary."
+        ]
+      },
 
-      travel: [
-        "Collect moments, not things. 🌍",
-        "New places, new perspectives. ✈️",
-        "Adventure is calling. 🏔️",
-        "Explore more. Worry less. 🌴",
-        "The world is too beautiful to stay in one place."
-      ],
-
-      lifestyle: [
-        "Enjoy the little things in life. ☀️",
-        "Make every day meaningful. 🌿",
-        "Creating a life I love. 💛",
-        "Choose happiness every day. ✨",
-        "Live simply. Dream deeply."
-      ]
-
+      lifestyle: {
+        professional: [
+          "Creating balance through intentional choices.",
+          "A meaningful lifestyle starts with mindful habits."
+        ],
+        funny: [
+          "Today's productivity goal: find my coffee. ☕",
+          "Currently accepting snacks and good vibes. 😄"
+        ],
+        motivational: [
+          "Small positive habits lead to meaningful change. 🌿",
+          "Make today another step toward your best life."
+        ]
+      }
     };
 
     let currentCaption = "";
 
-    function generateCaption() {
+    function resetCaption() {
+      currentCaption = "";
+      document.getElementById("caption").textContent =
+        "Your caption will appear here.";
+      document.getElementById("message").textContent = "";
+    }
 
+    function generateCaption() {
       const category =
         document.getElementById("category").value;
 
-      const options = captions[category];
+      const style =
+        document.getElementById("style").value;
+
+      const options = captions[category][style];
 
       const randomIndex =
         Math.floor(Math.random() * options.length);
@@ -256,48 +292,30 @@
         currentCaption;
 
       document.getElementById("message").textContent = "";
-
     }
 
     async function copyCaption() {
-
-      const message =
-        document.getElementById("message");
+      const message = document.getElementById("message");
 
       if (!currentCaption) {
-        message.textContent =
-          "Please generate a caption first!";
+        message.textContent = "Generate a caption first!";
         return;
       }
 
       try {
-
         await navigator.clipboard.writeText(currentCaption);
-
-        message.textContent =
-          "✅ Caption copied successfully!";
-
+        message.textContent = "✅ Caption copied successfully!";
       } catch (error) {
-
         message.textContent =
           "Copy failed. Please select and copy the caption manually.";
-
       }
-
     }
 
     document.getElementById("category")
-      .addEventListener("change", function () {
+      .addEventListener("change", resetCaption);
 
-        currentCaption = "";
-
-        document.getElementById("caption").textContent =
-          "Your caption will appear here.";
-
-        document.getElementById("message").textContent = "";
-
-      });
-
+    document.getElementById("style")
+      .addEventListener("change", resetCaption);
   </script>
 
 </body>
