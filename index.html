@@ -4,52 +4,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GrowDesign AI Toolkit</title>
+
+  <title>GrowDesign AI Toolkit | Caption Generator</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #111827;
       color: white;
       text-align: center;
+      margin: 0;
       padding: 50px 20px;
+      min-height: 100vh;
     }
-    h1 { color: #facc15; }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #facc15;
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-top: 45px;
+      font-size: 26px;
+    }
+
+    .description {
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin: 30px 0 10px;
+      font-size: 17px;
+    }
+
+    select {
+      padding: 14px;
+      width: 100%;
+      max-width: 300px;
+      background: white;
+      color: #111827;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
     button {
-      padding: 14px 24px;
-      background: #facc15;
+      padding: 15px 25px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      font-size: 16px;
       font-weight: bold;
+      margin: 12px 5px;
+      transition: background 0.2s;
     }
+
+    .generate-btn {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .generate-btn:hover {
+      background: #eab308;
+    }
+
+    .copy-btn {
+      background: #374151;
+      color: white;
+      border: 1px solid #6b7280;
+    }
+
+    .copy-btn:hover {
+      background: #4b5563;
+    }
+
+    .caption-box {
+      background: #1f2937;
+      padding: 25px;
+      margin-top: 25px;
+      border-radius: 12px;
+      border: 1px solid #374151;
+    }
+
     #caption {
-      margin-top: 30px;
       font-size: 20px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    #message {
+      color: #86efac;
+      min-height: 24px;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      button {
+        width: 100%;
+        margin: 8px 0;
+      }
     }
   </style>
 </head>
-<body>
-  <h1>GrowDesign AI Toolkit</h1>
-  <p>Free creative tools for designers and creators.</p>
 
-  <h2>Caption Idea Generator</h2>
-  <button onclick="generateCaption()">Generate Caption</button>
-  <p id="caption">Your caption will appear here.</p>
+<body>
+
+  <main class="container">
+
+    <h1>GrowDesign AI Toolkit</h1>
+
+    <p class="description">
+      Free creative tools for designers and creators.
+    </p>
+
+    <h2>Caption Idea Generator</h2>
+
+    <p class="description">
+      Select a category and discover creative caption ideas
+      for your social media posts.
+    </p>
+
+    <label for="category">Choose a category</label>
+
+    <select id="category">
+      <option value="design">🎨 Design</option>
+      <option value="business">💼 Business</option>
+      <option value="fashion">👗 Fashion</option>
+      <option value="travel">✈️ Travel</option>
+      <option value="lifestyle">🌿 Lifestyle</option>
+    </select>
+
+    <div>
+      <button
+        class="generate-btn"
+        onclick="generateCaption()">
+        Generate Caption
+      </button>
+    </div>
+
+    <section class="caption-box">
+
+      <p id="caption" aria-live="polite">
+        Your caption will appear here.
+      </p>
+
+      <button
+        class="copy-btn"
+        onclick="copyCaption()">
+        📋 Copy Caption
+      </button>
+
+      <p id="message" role="status" aria-live="polite"></p>
+
+    </section>
+
+    <footer>
+      Made with ❤️ by GrowDesign AI
+      <p>Free and open-source creative toolkit.</p>
+    </footer>
+
+  </main>
 
   <script>
-    const captions = [
-      "Create something amazing today! ✨",
-      "Design is where creativity meets purpose. 🎨",
-      "Small ideas can create a big impact. 🚀",
-      "Your next creative breakthrough starts now. 💡",
-      "Turn imagination into inspiration. 🌟"
-    ];
+
+    const captions = {
+
+      design: [
+        "Design is where creativity meets purpose. 🎨",
+        "Turning ideas into visual stories. ✨",
+        "Create boldly. Design thoughtfully. 💡",
+        "Good design makes an impact. 🚀",
+        "Creativity has no limits. 🌟"
+      ],
+
+      business: [
+        "Building dreams, one step at a time. 🚀",
+        "Great businesses start with bold ideas. 💼",
+        "Success begins with consistent action. 📈",
+        "Dream big. Start small. Keep growing. 💡",
+        "Every big achievement starts with a decision."
+      ],
+
+      fashion: [
+        "Style is a way to tell your story. ✨",
+        "Confidence is always in fashion. 👗",
+        "Your style, your rules. 💫",
+        "Dress like you mean it. 🔥",
+        "Fashion fades, but personal style remains."
+      ],
+
+      travel: [
+        "Collect moments, not things. 🌍",
+        "New places, new perspectives. ✈️",
+        "Adventure is calling. 🏔️",
+        "Explore more. Worry less. 🌴",
+        "The world is too beautiful to stay in one place."
+      ],
+
+      lifestyle: [
+        "Enjoy the little things in life. ☀️",
+        "Make every day meaningful. 🌿",
+        "Creating a life I love. 💛",
+        "Choose happiness every day. ✨",
+        "Live simply. Dream deeply."
+      ]
+
+    };
+
+    let currentCaption = "";
 
     function generateCaption() {
-      const randomIndex = Math.floor(Math.random() * captions.length);
+
+      const category =
+        document.getElementById("category").value;
+
+      const options = captions[category];
+
+      const randomIndex =
+        Math.floor(Math.random() * options.length);
+
+      currentCaption = options[randomIndex];
+
       document.getElementById("caption").textContent =
-        captions[randomIndex];
+        currentCaption;
+
+      document.getElementById("message").textContent = "";
+
     }
+
+    async function copyCaption() {
+
+      const message =
+        document.getElementById("message");
+
+      if (!currentCaption) {
+        message.textContent =
+          "Please generate a caption first!";
+        return;
+      }
+
+      try {
+
+        await navigator.clipboard.writeText(currentCaption);
+
+        message.textContent =
+          "✅ Caption copied successfully!";
+
+      } catch (error) {
+
+        message.textContent =
+          "Copy failed. Please select and copy the caption manually.";
+
+      }
+
+    }
+
+    document.getElementById("category")
+      .addEventListener("change", function () {
+
+        currentCaption = "";
+
+        document.getElementById("caption").textContent =
+          "Your caption will appear here.";
+
+        document.getElementById("message").textContent = "";
+
+      });
+
   </script>
+
 </body>
 </html>
